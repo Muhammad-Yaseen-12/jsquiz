@@ -93,7 +93,7 @@ function nextQuestion() {
             
             userAns = ansValue[j].value;
             console.log(userAns);
-            // break;
+
         }
     }
 
