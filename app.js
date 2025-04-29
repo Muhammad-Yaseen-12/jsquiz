@@ -57,117 +57,87 @@ let questions = [
     },
 ];
 
+let htmlques = document.getElementById("ques");
+let htmlopt1 = document.getElementById("opt1");
+let htmlopt2 = document.getElementById("opt2");
+let htmlopt3 = document.getElementById("opt3");
+
+let index = 0;
+let score = 0;
+let getBtn = document.getElementById("btn");
 
 
+function showQuestion() {
+    let current = questions[index];
+    console.log(current);
+    
+    htmlques.innerText = current.question;
 
+    document.getElementById("optAns1").value = current.option1;
+    document.getElementById("optAns2").value = current.option2;
+    document.getElementById("optAns3").value = current.option3;
 
-var htmlques = document.getElementById('ques')
-var htmlopt1 = document.getElementById('opt1')
-var htmlopt2 = document.getElementById('opt2')
-var htmlopt3 = document.getElementById('opt3')
-var index = 0
-var getBtn = document.getElementById('btn')
-var score = 0
+    htmlopt1.innerText = current.option1;
+    htmlopt2.innerText = current.option2;
+    htmlopt3.innerText = current.option3;
 
-
-function nextQuestion() {
-    console.log("code chal raha hai");
-
-    var getInputs = document.getElementsByTagName('input')
-    for (var i = 0; i < getInputs.length; i++) {
-        getInputs[i].checked = false
-    }
-
-    console.log("code chal raha hai");
-
-    let ansValue = document.getElementsByName("quiz")
-    let userAns = "";
-    console.log("code chal raha hai");
-
-
-    // yaha se check kar lai
-
-
-    for (let j = 0; j < ansValue.length; j++) {
-        console.log("code chal raha hai");
-        // if(ansValue[j].checked){
-        userAns = ansValue[j].value;
-        console.log(userAns);
-        
-        console.log("code chal raha hai");
-        // }
-
-
-        // document.getElementById("optAns1").value = "";
-
-        // console.log(userAns);
-
-
-
-        // console.log(userAns);
-
-        if (userAns === questions[index].correctOption) {
-            score++;
-
-            console.log(score);
-            console.log("code chal raha hai");
-        }
-
-    }
-// thanks bro
-
-
-
-
-    console.log("code chal raha hai");
-
-    if (index > questions.length - 1) {
-        Swal.fire({
-            title: "Quiz End!" + score,
-            text: "Restart Quiz",
-            icon: "success"
-        });
-        index = 0;
-        score = 0;
-        clearInterval(interval)
-        sec.innerHTML = "00";
-        min.innerHTML = "08";
-        document.getElementById("btnn").disabled = false
-        nextQuestion()
-
-    }
-    else {
-        htmlques.innerText = questions[index].question
-        htmlopt1.innerText = questions[index].option1
-        htmlopt2.innerText = questions[index].option2
-        htmlopt3.innerText = questions[index].option3
-        index++
-    }
-
-    getBtn.disabled = true
-
-
+    getBtn.disabled = true;
 }
 
-nextQuestion()
+function nextQuestion() {
+    let ansValue = document.getElementsByName("quiz");
+    let userAns = "";
+
+    for (let j = 0; j < ansValue.length; j++) {
+        if (ansValue[j].checked) {
+            
+            userAns = ansValue[j].value;
+            console.log(userAns);
+            // break;
+        }
+    }
+
+    if (userAns === questions[index].correctOption) {
+        score++;
+    }
+
+
+    for (let i = 0; i < ansValue.length; i++) {
+        ansValue[i].checked = false;
+    }
+
+    if (index >= questions.length - 1) {
+        Swal.fire({
+            title: "Quiz End! Your Score: " + score,
+            text: "Restarting quiz...",
+            icon: "success"
+        });
+
+        index = 0;
+        score = 0;
+        clearInterval(interval);
+        sec.innerHTML = "00";
+        min.innerHTML = "08";
+        document.getElementById("btnn").disabled = false;
+        showQuestion();
+        return;
+    }
+
+    index++;
+    showQuestion();
+}
 
 
 function btnWork() {
-
-    getBtn.disabled = false
+    getBtn.disabled = false;
 }
-
-
 
 
 let min = document.getElementById("min");
 let sec = document.getElementById("sec");
-
 let jsMin = 7;
 let jsSec = 60;
-
 let interval;
-let quizOptionss;
 
 document.getElementById("optAns1").disabled = true;
 document.getElementById("optAns2").disabled = true;
@@ -175,46 +145,30 @@ document.getElementById("optAns3").disabled = true;
 
 function start() {
     interval = setInterval(function () {
-
         jsSec--;
         sec.innerHTML = jsSec;
-        min.innerHTML = jsMin
+        min.innerHTML = jsMin;
 
         if (jsSec <= 0) {
             jsSec = 59;
             jsMin--;
-            min.innerHTML = jsMin
         }
 
-        if (jsSec < 10) {
-            sec.innerHTML = "0" + jsSec;
-        }
+        if (jsSec < 10) sec.innerHTML = "0" + jsSec;
+        if (jsMin < 10) min.innerHTML = "0" + jsMin;
 
-        if (jsMin < 10) {
-            min.innerHTML = "0" + jsMin;
-        }
-
-        if (jsMin === 0) {
+        if (jsMin === 0 && jsSec === 0) {
             clearInterval(interval);
-
-            jsMin = 7;
-            jsSec = 60;
-
-            sec.innerHTML = "00";
-            min.innerHTML = "08";
-
-            // quizOptionss.disabled = false
-
-            alert("times up")
-            document.getElementById("btnn").disabled = false
+            alert("Time's up!");
+            document.getElementById("btnn").disabled = false;
         }
+    }, 1000);
 
-    }, 1000)
-    document.getElementById("btnn").disabled = true
-
+    document.getElementById("btnn").disabled = true;
     document.getElementById("optAns1").disabled = false;
     document.getElementById("optAns2").disabled = false;
     document.getElementById("optAns3").disabled = false;
-
-
 }
+
+
+showQuestion();
