@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    padding: 15px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+center {
+    max-width: 800px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    padding: 25px;
+    margin: 15px 0;
+}
+
+h2#ques {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+    text-align: left;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+    line-height: 1.4;
+}
+
+/* Option Container Styling */
+center>div {
+    margin: 12px 0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.25s;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-break: anywhere;
+}
+
+center>div:hover {
+    border-color: #1a2a6c;
+    background-color: #f8f9fa;
+}
+
+/* Visible Google Forms-style radio buttons */
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #5f6368;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    flex-shrink: 0;
+}
+
+input[type="radio"]:checked {
+    border-color: #1a2a6c;
+}
+
+input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #1a2a6c;
+    border-radius: 50%;
+}
+
+/* Label Styling */
+label {
+    display: block;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    color: #2c3e50;
+    user-select: none;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+/* Button Styling */
+button#btn {
+    background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 15px;
+    width: 150px;
+    max-width: 100%;
+    font-weight: 600;
+    box-shadow: 0 3px 12px rgba(26, 42, 108, 0.3);
+}
+
+button#btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 42, 108, 0.4);
+}
+
+button#btn:disabled {
+    background: linear-gradient(90deg, #bdc3c7, #95a5a6);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+button#btnn {
+    background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 15px;
+    width: 150px;
+    max-width: 100%;
+    font-weight: 600;
+    box-shadow: 0 3px 12px rgba(26, 42, 108, 0.3);
+}
+
+button#btnn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 42, 108, 0.4);
+}
+
+button#btnn:disabled {
+    background: linear-gradient(90deg, #bdc3c7, #95a5a6);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    center {
+        padding: 20px 15px;
+    }
+
+    center>div {
+        padding: 10px 12px;
+    }
+
+    input[type="radio"] {
+        width: 16px;
+        height: 16px;
+    }
+
+    input[type="radio"]:checked::before {
+        width: 8px;
+        height: 8px;
+        top: 2px;
+        left: 2px;
+    }
+}
+
+@media (max-width: 350px) {
+    body {
+        padding: 10px;
+    }
+
+    center {
+        padding: 18px 12px;
+    }
+
+    h2#ques {
+        font-size: 1rem;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    input[type="radio"] {
+        width: 14px;
+        height: 14px;
+    }
+
+    input[type="radio"]:checked::before {
+        width: 6px;
+        height: 6px;
+        top: 2px;
+        left: 2px;
+    }
+}
