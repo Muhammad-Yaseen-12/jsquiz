@@ -85,6 +85,9 @@ function nextQuestion() {
     console.log("code chal raha hai");
 
 
+    // yaha se check kar lai
+
+
     for (let j = 0; j < ansValue.length; j++) {
         console.log("code chal raha hai");
         // if(ansValue[j].checked){
@@ -111,6 +114,11 @@ function nextQuestion() {
         }
 
     }
+// thanks bro
+
+
+
+
     console.log("code chal raha hai");
 
     if (index > questions.length - 1) {
